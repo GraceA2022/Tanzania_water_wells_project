@@ -1,6 +1,7 @@
 # Tanzania_water_wells_project
 
 ## BUSINESS UNDERSTANDING
+![image](https://user-images.githubusercontent.com/78497452/198192701-f354ef95-a6b1-472d-8cd3-d32ff81cf7a5.png)
 
 ### Overview:
 
@@ -17,9 +18,10 @@ Tanzania is the largest country of East-Africa with 59,353,795 population accord
 Our goal in this project is to build a model that predicts the functionality of water points. With this predictive model, authorities can understand which water points are functional, nonfunctional, and functional but it needs to repair. This model can help the Tanzanian government to find likely maintenance needy wells or give useful information for future wells. With this model, we can help the Tanzanian authorities how to use water sources in a productive way. It also helps the investment of the government on wells.
 
 
-### Metric: 
 
-The metric is an accuracy score of 70%
+## Project Metric of Success: 
+
+The metric is an accuracy score of 70 - 75%
 
 ## DATA UNDERSTANDSING
 
@@ -42,21 +44,32 @@ Ternary Target Modeling
 
 ### Understanding Data: 
 
-We realized two main challanges in this dataset. Firstly, columns in this data are mostly categorical columns with many unique values with is not understandable for machines. The first challange is to solve this problem. Second challenge is to handle with highly imbalanced multi-target problem. We understood these two challanges with the understanding of data.
+The data has a 59,400 rows and 41 columns. Of those 41 columns, 10 were numeric columns and the remaining 31 were string columns; known as object in pandas.
+After clearly observing the data through the .info method and the descriptive statistics of the numerical columns, we made some critical observations that will assist us in analyzing the data and coming up with an efficient model. These observations include:
+After going through the variable description of the data and performing the preliminary data inspection, we discovered that there are some columns that provide the same information which makes theme irrelevant in this study. The study discovered that 21 columns will not be used in this investigation and thus were deemed ‘repititve and unuseful’
 
-### Cleaning and Exploring Data:
+## Data Preparation
+It is vital for data to be prepared before being staged for modelling to enhance the model's efficiency and prevent the generation of misleading insights. In this phase of the investigation, the study will look at missing values, duplicated entries, inconsistencies and invalid data. In this section, we first dropped the irrelevant columns mentioned in data understanding since we do not have to prepare columns that will not be used in the study. 
+## Exploratory Data Analysis
+In this phase of the investigation, the study will look at the trends, patterns using visualizations and statistics to show the relationships between the variables within the data
 
-Mainly, null, zero and missing values changed to mean.
+### Univariate, Bivariate and Multivariate analysis were performed on the data.
+### EDA Conclusion
+For extraction type, submersible has the most amount of water available in the data despite not registering some of the highest heights. Motorpumps and submersible are generally located in low altitude areas, possibly because while there it is nearer to the water table than at a higher altitude. For a handpump to have water available above the median amount of total static head, it needs to be above a height of 500 meters above sea level
 
-Preparing Data to Modeling: 
+The observations made through this analysis can be used to provide recommendations to the government on where more wells ae needed, the requirement of the locatiIn conclusion, the entity that funds most of the waterpoints going by the analysis is the Government of Tanzania and they are also the second most installers of the waterpoints thus it makes sense that they are the chosen stakeholders for this investigation.
+
+The anlaysis also discovers that communal standpipe seems to be the most popular waterpoint type around the country.
+Most of the wells that are never paid for were discovered to be non functional
+![image](https://user-images.githubusercontent.com/78497452/198195550-fc7cee45-e5d9-4cd0-9bd3-d2f7e28a5531.png)
+
+##Preparing Data to Modeling: 
 
 To prepare our data to machine learning, we did some feature engineering, encoding and scaling.
 
 ### Findings:
 
 Authorties should check again the wells which they funded.
-
-The most common extraction type is gravity but second is hand pumps. The quality of handpumps are less than comumunal pumps. It shows that authorities need to focus on pumping type. It is seen that, there are many non-functional water points which belongs to gravity which is natural force so no need to do anything expensive as extraction type.
 
 New tecqniques must be found to feed dry wells and repair wells.
 
@@ -66,10 +79,8 @@ More detailed finding can be found in notebooks with explorations.
 
 Feature engineering on categorical columns will be good idea to handle first challange.
 
-Imbalanced target problem will be solved in more effective way.
+Imbalanced target problem will be solved using SMOTE.
 
-Parameter optimization will be improved for XGBoost Model to fix overfitting problem.
+The best overall model was a K nearest neighbours classifier with a testing accuracy score of 71%
 
-Wells can be monitored well and model can be improved according to more accurate and recent data.
 
-Different regions have different factors like climate, rainfall season etc. So, from the main model, different models can be build for each region.
